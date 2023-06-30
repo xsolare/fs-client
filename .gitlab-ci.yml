@@ -1,0 +1,63 @@
+default:
+  image: 'node:18.14.2-alpine'
+  before_script:
+    - apk update && apk upgrade -U -a
+    - apk add wget
+    - >-
+      wget -qO /bin/pnpm
+      "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64"
+      && chmod +x /bin/pnpm
+    - pnpm config set store-dir .pnpm-store
+  tags:
+    - docker
+
+variables:
+  DEPLOY_APP:
+    value: '0'
+    description: 'deploy app'
+  DEPLOY_VERCEL:
+    value: '0'
+    description: 'deploy on vercel'
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - dist/
+
+stages:
+  - build
+  - deploy vercel prod
+  - deploy vercel preview
+
+# --- build --- #
+build:
+  stage: build
+  script:
+    - pnpm i
+    - pnpm run lint
+    - pnpm run build
+  only:
+    - branches
+
+# --- deploy on vercel --- #
+deploy vercel prod:
+  stage: deploy vercel prod
+  only:
+    - master
+  script:
+    - npm i --global vercel
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+    - vercel build --prod --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+
+deploy vercel preview:
+  stage: deploy vercel preview
+  rules:
+    - if: '$CI_COMMIT_BRANCH != "master"'
+  script:
+    - npm i --global vercel
+    - vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
+    - vercel build --token=$VERCEL_TOKEN
+    - vercel deploy --prebuilt  --token=$VERCEL_TOKEN
+# --------------------------------- #

@@ -1,0 +1,37 @@
+.error {
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.error > svg {
+  color: tomato;
+  font-size: 10rem;
+}
+
+.error > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.error > div > span {
+  color: tomato;
+  font-size: 1.5rem;
+}
+
+.footer {
+  position: fixed;
+  bottom: 5px;
+  right: calc(50% - 100px);
+
+  width: 200px;
+  color: #535353;
+}
