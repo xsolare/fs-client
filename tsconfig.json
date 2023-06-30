@@ -2,7 +2,11 @@
   "$schema": "https://json.schemastore.org/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,16 +22,26 @@
     "jsxImportSource": "@emotion/react",
     "baseUrl": ".",
     "paths": {
-      "#/*": ["./src/*"],
-      "~/*": ["./node_modules/*"]
+      "#/*": [
+        "./src/*"
+      ],
+      "~/*": [
+        "./node_modules/*"
+      ]
     },
     "types": [
       "vite/client",
       "node",
       "./src/types/auto-imports.d.ts",
-      "./node_modules/@nord-clan/loc-track-ui-kit/dist/types/emotion.d.ts"
+      // "./node_modules/@nord-clan/loc-track-ui-kit/dist/types/emotion.d.ts"
     ],
-    "typeRoots": ["./node_modules/@types"]
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./test/**/*"]
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./test/**/*"
+  ]
 }

@@ -1,4 +1,4 @@
-import { DialogStyled } from '@nord-clan/loc-track-ui-kit'
+import { DialogStyled } from '#/components/ui/dialog/dialog.style'
 
 export const DialogAuthStyled = styled(DialogStyled)`
   overflow: hidden;

@@ -1,7 +1,7 @@
-import type { IModalController } from '@nord-clan/loc-track-ui-kit'
-
+import type { IModalController } from '#/components/ui/modal/modal.store'
 import ErrorBoundary from '#/components/error/error-boundary'
 import DefaultLayout from '#/components/layouts/default/default.layout'
+import { Modal } from '#/components/ui/modal/modal'
 import { RootStoreProvider } from '#/contexts/root-store'
 import ThemeProvider from '#/contexts/theme'
 import { useAppInitialize } from '#/hooks/user-app-initialize.hook'

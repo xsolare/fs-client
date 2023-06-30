@@ -1,5 +1,5 @@
+import type { TControllerRef } from '#/utils/common/utils'
 import type { IAuthDialogStoreController } from './auth.store'
-import type { TControllerRef } from '@nord-clan/loc-track-ui-kit'
 import type { FC } from 'react'
 
 import { Tabs } from 'antd'

@@ -2,14 +2,9 @@ import type { Variables } from 'graphql-request'
 
 import { GraphQLClient } from 'graphql-request'
 
-import { getBearerToken } from '../common'
-import { NodeMutation } from './mutation/node/node.mutation'
+import { getBearerToken } from '../common/helpers'
 import { UserMutation } from './mutation/user/user.mutation'
-import { UserOnNodesMutation } from './mutation/user-on-node/user-on-node.mutation'
-import { NodeQuery } from './query/node/node.query'
-import { OfficeQuery } from './query/office/office.query'
 import { UserQuery } from './query/user/user.query'
-import { UsersOnNodesQuery } from './query/user-on-node/user-on-node.query'
 
 export type HandleGQL = typeof handleGQL
 
@@ -40,14 +35,9 @@ export const handleGQL = async <TData, TVariables = Variables>(
 
 export const graphql = {
   query: {
-    user: UserQuery(handleGQL),
-    node: NodeQuery(handleGQL),
-    office: OfficeQuery(handleGQL),
-    usersOnNodes: UsersOnNodesQuery(handleGQL)
+    user: UserQuery(handleGQL)
   },
   mutation: {
-    user: UserMutation(handleGQL),
-    node: NodeMutation(handleGQL),
-    usersOnNodes: UserOnNodesMutation(handleGQL)
+    user: UserMutation(handleGQL)
   }
 }

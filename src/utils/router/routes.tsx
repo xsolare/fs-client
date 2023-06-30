@@ -4,6 +4,6 @@ import Home from '#/pages/home'
 
 export const AppRoutes = () => (
   <Routes>
-    <Route path="/home" element={<Home />} />
+    <Route path="/" element={<Home />} />
   </Routes>
 )

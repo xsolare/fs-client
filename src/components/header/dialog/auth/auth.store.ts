@@ -1,7 +1,7 @@
 import type UserStore from '#/store/user.store'
 
-import { BaseDialogStore } from '@nord-clan/loc-track-ui-kit'
 import { RiErrorWarningLine } from 'react-icons/ri'
+import { BaseDialogStore } from '#/components/ui/dialog/dialog.store'
 
 export interface IAuthDialogStoreController {
   show: () => void

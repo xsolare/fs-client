@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type UserStore from '#/store/user.store'
-import type { IBaseDialogStoreParams } from '@nord-clan/loc-track-ui-kit'
-
-import { BaseDialogStore } from '@nord-clan/loc-track-ui-kit'
+import { BaseDialogStore, type IBaseDialogStoreParams } from '#/components/ui/dialog/dialog.store'
 
 export interface IMenuStoreShowParams {
   userStore: UserStore

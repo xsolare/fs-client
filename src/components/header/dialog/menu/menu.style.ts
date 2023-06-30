@@ -1,4 +1,4 @@
-import type { IDialogWrapperStylePropsBase } from '@nord-clan/loc-track-ui-kit'
+import type { IDialogWrapperStylePropsBase } from '#/components/ui/dialog/dialog-wrapper.style'
 
 const width = '200px'
 

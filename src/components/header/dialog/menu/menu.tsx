@@ -1,9 +1,8 @@
+import type { TControllerRef } from '#/utils/common/utils'
 import type { IMenuDialogStoreController } from './menu.store'
-import type { TControllerRef } from '@nord-clan/loc-track-ui-kit'
 import type { FC } from 'react'
 
-import { useOutsideClick, setController, Dialog, useNewStore } from '@nord-clan/loc-track-ui-kit'
-
+import { Dialog } from '#/components/ui/dialog/dialog'
 import { MenuDialogStore } from './menu.store'
 import { MenuStyled } from './menu.style'
 
@@ -20,7 +19,7 @@ const Menu: FC<IMenuProps> = observer((props) => {
   const controller = setController(store, controllerRef)
   const ref = useRef<HTMLDivElement>(null)
 
-  const { handleClickLogout, handleClickCurrentLocation, handleClickProfile } = store
+  const { handleClickLogout, handleClickProfile } = store
   const { isNotAnimate } = store.dialogParams
   const { isVisible, isLock } = store.dialogState
 
@@ -41,10 +40,7 @@ const Menu: FC<IMenuProps> = observer((props) => {
             <span>Профиль</span>
             {/* <BiCurrentLocation /> */}
           </div>
-          <div onClick={handleClickCurrentLocation}>
-            <span>Мое расположение</span>
-            {/* <BiCurrentLocation /> */}
-          </div>
+
           <div onClick={handleClickLogout}>
             <span>Выйти</span>
             {/* <BiLogInCircle /> */}

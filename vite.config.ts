@@ -42,7 +42,7 @@ export default defineConfig(async ({ command, mode }): Promise<UserConfig> => {
               '@emotion/react',
               '@emotion/styled'
             ],
-            'ui-kit': ['@nord-clan/loc-track-ui-kit', 'antd'],
+            'ui-kit': [ 'antd'],
             helpers: ['classnames', 'dayjs', 'uuid']
           },
           plugins: [

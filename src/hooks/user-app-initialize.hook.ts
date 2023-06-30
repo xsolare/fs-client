@@ -1,5 +1,5 @@
-import type { IModalController, TControllerRef } from '@nord-clan/loc-track-ui-kit'
-
+import type { IModalController } from '#/components/ui/modal/modal.store'
+import type { TControllerRef } from '#/utils/common/utils'
 import { store } from '#/store/common'
 
 interface IInitialProps {
