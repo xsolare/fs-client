@@ -1,7 +1,14 @@
 import type { IDataNode } from '#/types/models/file.interface'
-import { MdDownload } from 'react-icons/md'
+import type { FC } from 'react'
+import { MdDownload, MdUpload } from 'react-icons/md'
 
-export const FileControl = ({ file }: { file: IDataNode }) => {
+interface IProps {
+  file: IDataNode
+}
+
+export const FileControl: FC<IProps> = (props) => {
+  const { file } = props
+
   const handleDownload = async () => {
     const { data } = await api().fs.downloadFile(`${file.data.path}`)
 
@@ -14,9 +21,17 @@ export const FileControl = ({ file }: { file: IDataNode }) => {
     link.click()
   }
 
+  const handleUpload = () => {
+    // const formData = new FormData()
+    // formData.append('file', fileInput.files[0])
+  }
+
+  if (!file) return null
+
   return (
     <Styled>
-      <MdDownload onClick={handleDownload} />
+      {file.data?.type === 'folder' && <MdUpload onClick={handleUpload} />}
+      {file.data?.type === 'file' && <MdDownload onClick={handleDownload} />}
     </Styled>
   )
 }

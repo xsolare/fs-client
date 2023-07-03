@@ -13,7 +13,19 @@ export const getBearerToken = () => {
 }
 
 export const createMdWithExtension = (fileContent: string, extension: string) => {
-  const allowExtension = ['sh', 'xml', 'yaml', 'docker', 'ts', 'js', 'json', 'key', 'pem', 'cert']
+  const allowExtension = [
+    'sh',
+    'xml',
+    'yml',
+    'yaml',
+    'docker',
+    'ts',
+    'js',
+    'json',
+    'key',
+    'pem',
+    'cert'
+  ]
 
   const isRewrite =
     !fileContent.startsWith('```') && allowExtension.find((f) => f.includes(extension))

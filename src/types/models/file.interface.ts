@@ -15,4 +15,5 @@ export type FileId = Flavor<string, 'FileId'>
 
 export interface IDataNode extends DataNode {
   data: IFile
+  children: IDataNode[]
 }

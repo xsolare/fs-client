@@ -7,29 +7,36 @@ export const HomeStyled = styled.div`
 
   .panel-files {
     display: flex;
+    min-width: 240px;
+    top: calc(50px + 12px);
+    left: 0;
+    position: sticky;
 
-    width: auto;
     min-width: 240px;
     background-color: ${({ theme }) => theme.palette.bg.mainContent};
     border-radius: 0 24px 0 0;
 
     margin-top: 12px;
-    padding: 6px 0;
+    box-shadow: ${({ theme }) => theme.palette.shadow.itemContent};
 
-    min-height: calc(100vh - 50px - 12px);
+    height: calc(100vh - 50px - 12px);
+    overflow: hidden;
+
+    &-wrapper {
+      overflow: scroll;
+      min-width: 240px;
+
+      ::-webkit-scrollbar,
+      ::-webkit-scrollbar-thumb,
+      ::-webkit-scrollbar-track {
+        display: none;
+      }
+    }
   }
 
   .content-files {
-    position: relative;
-
     width: 100%;
     padding: 12px 24px;
     overflow: auto;
-
-    &-wrapper {
-      top: 0;
-      left: 0;
-      position: sticky;
-    }
   }
 `
