@@ -1,45 +1,72 @@
-import type { DataNode, DirectoryTreeProps } from 'antd/es/tree'
+import type { DirectoryTreeProps } from 'antd/es/tree'
 import { Tree } from 'antd'
 import { HomeStyled } from '#/styles/pages/home.style'
-import { buildTree } from '#/utils/common/build-tree-files'
-
+import { buildTree, findFileInTree } from '#/utils/common/tree-files'
 const { DirectoryTree } = Tree
+import MarkdownPreview from '@uiw/react-markdown-preview'
+import { createMdWithExtension } from '#/utils/common/helpers'
+import { FileControl } from '#/components/files/file-control'
+import type { IDataNode, IFile } from '#/types/models/file.interface'
+import { useAppStore } from '../../store/common/root-store'
 
 const Home = () => {
-  const [files, setFiles] = useState<DataNode[]>([])
+  const {
+    appStore: {
+      state: { mountUrl }
+    }
+  } = useAppStore()
+
+  const [files, setFiles] = useState<IDataNode[]>([])
+  const [selectedFile, setSelectedFile] = useState<IFile>({} as IFile)
+  const [content, setContent] = useState<string>('')
 
   useEffect(() => {
     api()
-      .fs.getFiles()
-      .then(({ data }) => {
-        const tree = buildTree(data)
-        console.log('tree', tree)
-        setFiles(tree)
-      })
+      .fs.getFiles(mountUrl)
+      .then(({ data }) => setFiles(buildTree(data)))
   }, [])
 
-  const onSelect: DirectoryTreeProps['onSelect'] = (keys, info) => {
-    console.log('Trigger Select', keys, info)
+  const onSelect: DirectoryTreeProps['onSelect'] = (keys) => {
+    const file = findFileInTree(files, keys[0])
+    if (!file) return
+
+    setSelectedFile(file)
+
+    if (file.data.type !== 'folder') {
+      api()
+        .fs.getContentFile(`${file.data.path}`)
+        .then(({ data }) => {
+          const mdFile = createMdWithExtension(data, file.data.extension)
+          setContent(mdFile)
+        })
+    }
   }
 
-  const onExpand: DirectoryTreeProps['onExpand'] = (keys, info) => {
-    console.log('Trigger Expand', keys, info)
-  }
+  // const onExpand: DirectoryTreeProps['onExpand'] = (keys, info) => {
+  //   console.log('Trigger Expand', keys, info)
+  // }
 
   return (
     <HomeStyled>
       <div className="panel-files">
-        {files && (
-          <DirectoryTree
-            showIcon
-            showLine
-            onSelect={onSelect}
-            onExpand={onExpand}
-            treeData={files}
-          />
-        )}
+        <div className="panel-files-wrapper">
+          {files && (
+            <DirectoryTree
+              // showIcon
+              // showLine
+              // onExpand={onExpand}
+              onSelect={onSelect}
+              treeData={files}
+            />
+          )}
+        </div>
       </div>
-      <div className="content-files">TODO</div>
+      {content && (
+        <div className="content-files">
+          <MarkdownPreview source={content} />
+          <FileControl file={selectedFile} />
+        </div>
+      )}
     </HomeStyled>
   )
 }

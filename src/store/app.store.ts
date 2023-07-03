@@ -6,6 +6,7 @@ import type { Socket } from 'socket.io-client'
 
 import axios from 'axios'
 import { VscBracketError } from 'react-icons/vsc'
+import { MOUNT_URL } from '#/utils/common/constant'
 
 interface IAppStoreState {
   theme: ThemeVarious
@@ -13,6 +14,7 @@ interface IAppStoreState {
   viewport: IViewportRecord
   mediaType: 'screen' | 'print'
   isAppLoading: boolean
+  mountUrl: string
 }
 
 //* ---- App store ------------------------------------------------------------- *//
@@ -25,7 +27,8 @@ export default class AppStore {
     scroll: {} as IScrollRecord,
     viewport: {} as IViewportRecord,
     mediaType: 'screen',
-    isAppLoading: true
+    isAppLoading: true,
+    mountUrl: localStorage.getItem(MOUNT_URL) ?? './mock'
   }
 
   constructor() {

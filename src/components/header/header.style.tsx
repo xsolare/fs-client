@@ -4,7 +4,7 @@ export const HeaderStyled = styled.header`
   z-index: 3;
   user-select: none;
 
-  .logo {
+  .mount-path {
     position: fixed;
 
     left: 0;
@@ -19,12 +19,14 @@ export const HeaderStyled = styled.header`
     border-bottom: 1px solid ${({ theme }) => theme.palette.border.header};
     border-radius: 0 0 25px 0;
 
-    > a {
+    > input {
       display: flex;
       align-items: flex-start;
       justify-content: flex-end;
+      color: ${({ theme }) => theme.palette.color.header};
 
-      padding: 0px;
+      font-size: 1rem;
+      padding: 12px;
       height: 100%;
       width: 100%;
     }

@@ -31,7 +31,7 @@ const Modal: FC<IModalProps> = observer(({ controllerRef, zIndex = 999 }) => {
   return (
     <Dialog store={store}>
       <ModalStyled key={showKey} style={modalStyle}>
-        <div className={cn('modal-content', alertType)}>
+        <div className={cn('modal-content', `alert-${alertType}`)}>
           <h2 className="modal-header">
             <span className="header-modal-promt">{getHeaderByType(alertType)}</span>
             {!!Icon && (

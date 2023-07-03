@@ -21,10 +21,10 @@ const ThemeProvider: FC<PropsWithChildren> = observer(({ children }) => {
   const { appStore } = useAppStore()
   const { theme: currentTheme } = appStore.state
 
-  useIsomorphicLayoutEffect(
-    () => document.documentElement.setAttribute('data-theme', currentTheme),
-    [currentTheme]
-  )
+  useIsomorphicLayoutEffect(() => {
+    document.documentElement.setAttribute('data-color-mode', currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme)
+  }, [currentTheme])
 
   return (
     <ThemeEmotionProvider theme={getEmotionThemes(currentTheme)}>

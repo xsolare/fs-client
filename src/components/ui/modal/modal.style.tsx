@@ -1,6 +1,68 @@
 import styled from '@emotion/styled'
 
 export const ModalStyled = styled.div`
+  .alert {
+    &-warning {
+      box-shadow: -10px 0 10px -10px #ffd000, 0px 12px 32px 6px rgba(121, 138, 146, 0.2);
+      border-left: 8px solid #ffd000;
+
+      svg {
+        color: #ffd000;
+      }
+    }
+
+    &-error {
+      box-shadow: -10px 0 10px -10px tomato, 0px 12px 32px 6px rgba(121, 138, 146, 0.2);
+      border-left: 8px solid tomato;
+
+      svg {
+        color: tomato;
+      }
+    }
+
+    &-success {
+      box-shadow: -10px 0 10px -10px #00a954, 0px 12px 32px 6px rgba(121, 138, 146, 0.2);
+      border-left: 8px solid #00a954;
+
+      svg {
+        color: #00a954;
+      }
+    }
+
+    &-info {
+      box-shadow: -10px 0 10px -10px grey, 0px 12px 32px 6px rgba(121, 138, 146, 0.2);
+      border-left: 8px solid grey;
+
+      svg {
+        color: grey;
+      }
+    }
+
+    &-processing {
+      box-shadow: -10px 0 10px -10px ${({ theme }) => theme.palette?.bg.highlight},
+        0px 12px 32px 6px rgba(121, 138, 146, 0.2);
+      border-left: 8px solid ${({ theme }) => theme.palette?.bg.highlight};
+
+      svg {
+        color: ${({ theme }) => theme.palette?.color.textInvert};
+        animation-name: spin;
+        animation-duration: 800ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      }
+    }
+  }
+
   .modal-content {
     display: flex;
     flex-direction: column;
@@ -69,66 +131,6 @@ export const ModalStyled = styled.div`
       display: flex;
       justify-content: flex-end;
       gap: 20px;
-    }
-
-    &.warning {
-      box-shadow: -10px 0 10px -10px #ffd000, 0px 12px 32px 6px rgba(121, 138, 146, 0.2);
-      border-left: 8px solid #ffd000;
-
-      svg {
-        color: #ffd000;
-      }
-    }
-
-    &.error {
-      box-shadow: -10px 0 10px -10px tomato, 0px 12px 32px 6px rgba(121, 138, 146, 0.2);
-      border-left: 8px solid tomato;
-
-      svg {
-        color: tomato;
-      }
-    }
-
-    &.success {
-      box-shadow: -10px 0 10px -10px #00a954, 0px 12px 32px 6px rgba(121, 138, 146, 0.2);
-      border-left: 8px solid #00a954;
-
-      svg {
-        color: #00a954;
-      }
-    }
-
-    &.info {
-      box-shadow: -10px 0 10px -10px grey, 0px 12px 32px 6px rgba(121, 138, 146, 0.2);
-      border-left: 8px solid grey;
-
-      svg {
-        color: grey;
-      }
-    }
-
-    &.processing {
-      box-shadow: -10px 0 10px -10px ${({ theme }) => theme.palette?.bg.highlight},
-        0px 12px 32px 6px rgba(121, 138, 146, 0.2);
-      border-left: 8px solid ${({ theme }) => theme.palette?.bg.highlight};
-
-      svg {
-        color: ${({ theme }) => theme.palette?.color.textInvert};
-        animation-name: spin;
-        animation-duration: 800ms;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
-
-        @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-
-          to {
-            transform: rotate(360deg);
-          }
-        }
-      }
     }
   }
 

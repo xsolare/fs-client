@@ -25,7 +25,7 @@ const themeIcon = new Map<ThemeVarious, JSX.Element>([
 const Header: FC = observer(() => {
   const { userStore, appStore } = useAppStore()
   const {
-    state: { theme },
+    state: { theme, mountUrl },
     switchTheme,
     modal
   } = appStore
@@ -45,7 +45,9 @@ const Header: FC = observer(() => {
   return (
     <>
       <HeaderStyled>
-        <div className="logo"></div>
+        <div className="mount-path">
+          <input value={mountUrl} />
+        </div>
         <div className="control">
           <span
             onClick={() =>

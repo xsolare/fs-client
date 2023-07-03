@@ -11,3 +11,14 @@ export const getUrlParam = (paramName: string): string | null =>
 export const getBearerToken = () => {
   return `Bearer ${localStorage.getItem(AUTH_KEY)}`
 }
+
+export const createMdWithExtension = (fileContent: string, extension: string) => {
+  const allowExtension = ['sh', 'xml', 'yaml', 'docker', 'ts', 'js', 'json', 'key', 'pem', 'cert']
+
+  const isRewrite =
+    !fileContent.startsWith('```') && allowExtension.find((f) => f.includes(extension))
+
+  if (!isRewrite) return fileContent
+
+  return '```' + extension + '\n' + fileContent + '```'
+}

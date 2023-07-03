@@ -366,4 +366,8 @@ export const GlobalStyles = css`
       opacity: 1;
     }
   }
+
+  .wmde-markdown {
+    background-color: transparent;
+  }
 `
